@@ -1,4 +1,3 @@
-# test_token_scopes.py
 import requests
 from scripts.extract.auth_code_flow import get_user_token
 
