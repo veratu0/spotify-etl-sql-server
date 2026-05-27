@@ -1,4 +1,3 @@
-# scripts/extract/auth_code_flow.py
 import os
 from dotenv import load_dotenv
 from requests_oauthlib import OAuth2Session
@@ -13,10 +12,10 @@ load_dotenv()
 CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 REDIRECT_URI = "http://127.0.0.1:8080"
-# This scope is required to read your private playlists
+# Required to read private playlists
 SCOPE = "playlist-read-private user-read-private"
 
-# A simple HTTP server to catch the redirect and get the authorization code
+# HTTP server to catch the redirect and get the authorization code
 auth_code = None
 class CallbackHandler(BaseHTTPRequestHandler):
     def do_GET(self):
