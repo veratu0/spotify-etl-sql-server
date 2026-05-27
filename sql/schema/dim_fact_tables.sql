@@ -17,9 +17,9 @@ Script Purpose:
 USE SpotifyAnalytics;
 GO
 
--- =================================================================
--- Drop tables if they exist (order matters due to foreign keys)
--- =================================================================
+-- ==========================
+-- Drop tables if they exist 
+-- ==========================
 IF OBJECT_ID ('fact_track_metrics', 'U') IS NOT NULL
     DROP TABLE fact_track_metrics;
 GO
@@ -58,8 +58,8 @@ CREATE TABLE fact_track_metrics (
     track_id      NVARCHAR(50) PRIMARY KEY,
     track_name    NVARCHAR(200),
     duration_ms   INT,
-    explicit      BIT,                 -- 0 = false, 1 = true
-    release_year  INT,                 -- derived from release_date
+    explicit      BIT,               
+    release_year  INT,                
     added_at      DATETIME,
     artist_id     NVARCHAR(50) FOREIGN KEY REFERENCES dim_artist(artist_id),
     album_id      NVARCHAR(50) FOREIGN KEY REFERENCES dim_album(album_id)
@@ -67,19 +67,9 @@ CREATE TABLE fact_track_metrics (
 GO
 
 -- =================================================================
--- Optional: Create indexes for better query performance
+-- Create indexes for better query performance
 -- =================================================================
 CREATE INDEX idx_fact_artist ON fact_track_metrics(artist_id);
 CREATE INDEX idx_fact_album  ON fact_track_metrics(album_id);
 CREATE INDEX idx_fact_year   ON fact_track_metrics(release_year);
-GO
-
--- =================================================================
--- Verify table creation
--- =================================================================
-SELECT 'dim_artist'      AS table_name, COUNT(*) AS rows FROM dim_artist
-UNION ALL
-SELECT 'dim_album'       AS table_name, COUNT(*) AS rows FROM dim_album
-UNION ALL
-SELECT 'fact_track_metrics' AS table_name, COUNT(*) AS rows FROM fact_track_metrics;
 GO
