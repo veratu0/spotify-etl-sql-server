@@ -20,7 +20,6 @@ def load_data(cleaned_csv="data/processed/spotify_cleaned.csv"):
     df = pd.read_csv(cleaned_csv)
 
     # Convert 'added_at' to SQL Server compatible datetime string
-    # The CSV contains ISO format like "2026-05-23T09:15:26Z"
     df['added_at'] = pd.to_datetime(df['added_at']).dt.strftime('%Y-%m-%d %H:%M:%S')
 
     # Convert 'explicit' boolean to bit (0/1)
