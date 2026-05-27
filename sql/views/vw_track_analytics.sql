@@ -34,7 +34,3 @@ FROM fact_track_metrics f
 INNER JOIN dim_artist a ON f.artist_id = a.artist_id
 INNER JOIN dim_album al ON f.album_id = al.album_id;
 GO
-
--- Quick test
-SELECT TOP 10 * FROM vw_track_analytics;
-GO
