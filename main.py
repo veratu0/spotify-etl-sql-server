@@ -1,4 +1,3 @@
-# main.py
 import pandas as pd
 from scripts.extract.extract_playlist import extract_playlist_data
 from scripts.extract.auth_code_flow import get_user_token
@@ -7,7 +6,6 @@ from scripts.extract.auth_code_flow import get_user_token
 def run_etl_pipeline(playlist_id: str):
     print("--- Starting Spotify ETL Pipeline ---")
 
-    # Obtain token (once, though extract_playlist_data can also get it)
     print("Authenticating with Spotify...")
     token = get_user_token()
     print("Authentication successful.")
@@ -22,7 +20,7 @@ def run_etl_pipeline(playlist_id: str):
 
     print(f"Extraction complete. {len(tracks_df)} tracks found.")
 
-    # Transformation (without popularity)
+    # Transformation
     print("Transforming data...")
 
     # Convert added_at to datetime
