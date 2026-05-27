@@ -6,7 +6,6 @@ from .auth_code_flow import get_user_token as get_spotify_token
 
 
 def get_playlist_tracks(playlist_id, token):
-    # same as before, but token is passed in
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}/items"
     headers = {"Authorization": f"Bearer {token}"}
     tracks = []
@@ -40,7 +39,7 @@ def extract_playlist_data(playlist_id, token=None, save_raw=True):
 
     records = []
     for item in raw_tracks:
-        track = item.get("item")  # note: "item" key
+        track = item.get("item")  
         if not track or track.get("id") is None:
             continue
         artist = track["artists"][0] if track["artists"] else {"id": None, "name": None}
