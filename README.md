@@ -27,6 +27,12 @@ The final dashboard empowers stakeholders to monitor playlist composition, analy
 | **Visualization** | Power BI (Interactive Dashboards, Slicers) |
 | **Version Control** | Git & GitHub |
 
+## 🔄 Pipeline Architecture
+
+The pipeline follows an end‑to‑end Extract‑Transform‑Load (ETL) workflow:
+
+![Pipeline Diagram](images/pipeline-diagram.drawio.png)
+
 ## 🗺️ Data Model (Star Schema)
 
 I designed a clean dimensional model with one fact table (`fact_track_metrics`) connected to dimension tables for Artists, Albums, and Date to ensure fast, scalable reporting.
